@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-4">
+        <form method="GET">
+            <select class="btn btn-primary dropdown-toggle" name="category" 
+                hx-get="{% url 'landing_page_games' %}"
+                hx-target="#games-container"
+                hx-swap="innerHTML">
+                <option value="metacritic" {% if category == "metacritic" %} selected {%endif%}>Metacritic</option>
+                <option value="created" {% if category == "created" %} selected {%endif%}>Creado</option>
+                <option value="name" {% if category == "name" %} selected {%endif%}>Nombre</option>
+                <option value="added" {% if category == "added" %} selected {%endif%}>Popularidad</option>
+                <option value="rating" {% if category == "rating" %} selected {%endif%}>Rating</option>
+            </select>
+        </form>
+        <form method="GET"
+            hx-get="{% url 'landing_page_games' %}"
+            hx-target="#games-container"
+            hx-swap="innerHTML"
+            class="input-group w-50 mt-4"
+            >
+            <input type="text" name="search" placeholder="Busca un juego" class="form-control">
+            <div>
+                <button type="submit" class="btn btn-primary">
+                    Search
+                </button>
+            </div>
+        </form>
+        <div id="games-container" class="row mt-4">
+            {% include "games/partials/_game_list.html" %}
+        </div>
+    </div>
+{% endblock %}

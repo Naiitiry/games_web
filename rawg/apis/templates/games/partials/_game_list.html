@@ -1,0 +1,27 @@
+{% if error_message %}
+    <p>{{error_message}}</p>
+{% endif %}
+
+{% for game in games %}
+    <div class="col-md mb-4">
+        <a href="#">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ game.background_image }}" width="auto" alt="{{game.name}}">
+                <div class="card-body">
+                    <h3>{{game.name}}</h3>
+                    <p>Lanzamiento: {{game.released}}</p>
+                    <p>Rating: {{game.rating}}</p>
+                </div>
+            </div>
+        </a>
+    </div>
+{% endfor %}
+{% if has_next %}
+<div 
+    id="scroll-trigger"
+    hx-get="{% url 'landing_page_games' %}?ordering={{category}}&search={{search_query}}&page={{next_page}}"
+    hx-trigger="revealed"
+    hx-swap="beforednd"
+    hx-target="#games-container"
+    ></div>
+{% endif %}
