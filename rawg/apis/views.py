@@ -19,7 +19,6 @@ def landing_page_games(request):
     message_error =""
     games = []
     platforms = []
-    additions = []
 
     params={
         "key":API_KEY,

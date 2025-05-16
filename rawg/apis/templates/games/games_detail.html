@@ -22,6 +22,16 @@
                     <li>
                         <p>{{platform.platform.name}}</p>
                     </li>
+                {% empty %}
+                    <strong>Aún no se definieron las plataformas para el juego.</strong>
+                {% endfor %}
+                <h2>Tags</h2>
+                {% for tag in game.tags %}
+                    <li>
+                        <p>{{tag.name}}</p>
+                    </li>
+                {% empty %}
+                    <strong>Aún no se definieron los tags para el juego.</strong>
                 {% endfor %}
             </ul>
         </div>
