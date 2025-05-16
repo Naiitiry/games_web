@@ -2,6 +2,7 @@
 {% block content %}
     <div class="container mt-4">
         <form method="GET">
+            {% csrf_token %}
             <select class="btn btn-primary dropdown-toggle" name="category" 
                 hx-get="{% url 'landing_page_games' %}"
                 hx-target="#games-container"
@@ -12,21 +13,38 @@
                 <option value="added" {% if category == "added" %} selected {%endif%}>Popularidad</option>
                 <option value="rating" {% if category == "rating" %} selected {%endif%}>Rating</option>
             </select>
+            <select class="btn btn-primary dropdown-toggle" name="platforms"
+                hx-get="{% url 'landing_page_games' %}"
+                hx-target="#games-container"
+                hx-swap="innerHTML">
+                {% for p in platforms %}
+                    <option value="{{p.id}}" {% if platform_query == p.id|stringformat:"s" %} selected {% endif %}>{{p.name}}</option>
+                {% endfor %}
+            </select>
+            <select name="exclude_additions" class="btn btn-primary dropdown-toggle"
+                hx-get="{% url 'landing_page_games' %}"
+                hx-target="#games-container"
+                hx-swap="innerHTML">
+                <option value="">Todos</option>
+                <option value="true" {% if exclude_additions == "true" %}selected{% endif %}>Solo juegos base</option>
+                <option value="false" {% if exclude_additions == "false" %}selected{% endif %}>Incluir DLCs</option>
+            </select>
         </form>
         <form method="GET"
             hx-get="{% url 'landing_page_games' %}"
             hx-target="#games-container"
-            hx-swap="innerHTML"
+            hx-swap="outerHTML"
             class="input-group w-50 mt-4"
             >
+            {% csrf_token %}
             <input type="text" name="search" placeholder="Busca un juego" class="form-control">
-            <div>
+            <div class="input-group-append">
                 <button type="submit" class="btn btn-primary">
                     Search
                 </button>
             </div>
         </form>
-        <div id="games-container" class="row mt-4">
+        <div id="games-container" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
             {% include "games/partials/_game_list.html" %}
         </div>
     </div>

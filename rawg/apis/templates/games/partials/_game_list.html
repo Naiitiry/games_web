@@ -4,12 +4,12 @@
 
 {% for game in games %}
     <div class="col-md mb-4">
-        <a href="#">
+        <a href="{% url 'game_detail' game.id %}">
             <div class="card" style="width: 18rem;">
                 <img src="{{ game.background_image }}" width="auto" alt="{{game.name}}">
                 <div class="card-body">
                     <h3>{{game.name}}</h3>
-                    <p>Lanzamiento: {{game.released}}</p>
+                    <p>Released: {{game.released}}</p>
                     <p>Rating: {{game.rating}}</p>
                 </div>
             </div>
@@ -17,11 +17,17 @@
     </div>
 {% endfor %}
 {% if has_next %}
-<div 
-    id="scroll-trigger"
-    hx-get="{% url 'landing_page_games' %}?ordering={{category}}&search={{search_query}}&page={{next_page}}"
-    hx-trigger="revealed"
-    hx-swap="beforednd"
-    hx-target="#games-container"
+    <div 
+        id="scroll-trigger"
+        hx-get="{% url 'landing_page_games' %}?ordering={{category}}&search={{search_query}}&page={{next_page}}"
+        hx-trigger="revealed"
+        hx-swap="beforeend"
+        hx-target="#games-container"
     ></div>
+    <div class="htmx-indicator">
+        <div class="spinner"></div>
+        <p>Cargando más juegos...</p>
+    </div>
+{% else %}
+    <p class="text-center mt-4 text-muted">No hay más juegos para mostrar.</p>
 {% endif %}
