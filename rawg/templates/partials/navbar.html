@@ -1,3 +1,42 @@
-<nav class="navbar navbar-dark bg-dark">
-    <h1 style="color: white;">Barra de Navegación</h1>
+<nav>
+    <div class="navbar-container">
+        <div class="navbar-container-title">
+            <h1><a href="#">Nombre Web</a></h1>
+        </div>
+        <div class="navbar-container-auth">
+            {% if user.is_authenticated %}
+                <li>
+                    <a href="#">Logito</a>
+                    <a href="#">desplegable</a>
+                    <div>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
+                </li>
+                <div>
+                    <form action="#" method="POST">
+                        {% csrf_token %}
+                        <button type="submit">
+                            Log Out
+                        </button>
+                    </form>
+                </div>
+            {% else %}
+                <div>
+                    <li>
+                        <a href="#">Log In</a>
+                        <a href="#">Sign Up</a>
+                        <a href="#">Algo más</a>
+                        <div class="card-container">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                            <div class="card-menu">
+                                <a href="#">1</a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                            </div>
+                        </div>
+                    </li>
+                </div>
+            {% endif %}
+        </div>
+    </div>
 </nav>
