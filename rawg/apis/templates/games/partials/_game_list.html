@@ -3,10 +3,10 @@
 {% endif %}
 
 {% for game in games %}
-    <div class="col-md mb-4">
+    <div class="game-container">
         <a href="{% url 'game_detail' game.id %}">
-            <div class="card" style="width: 18rem;">
-                <img src="{{ game.background_image }}" width="auto" alt="{{game.name}}">
+            <div class="card-game-container">
+                <img src="{{ game.background_image }}" alt="{{game.name}}">
                 <div class="card-body">
                     <h3>{{game.name}}</h3>
                     <p>Released: {{game.released}}</p>

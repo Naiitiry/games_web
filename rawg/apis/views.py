@@ -8,7 +8,7 @@ import math
 API_KEY = settings.RAWG_API
 
 def landing_page_games(request):
-    category = request.GET.get("ordering","metacritic")
+    category = request.GET.get("ordering","-metacritic")
     platform_query = request.GET.get("platforms","")
     search_query = request.GET.get("search","")
     exclude_additions = request.GET.get("exclude_additions", "")

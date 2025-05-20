@@ -1,8 +1,14 @@
-*{
+:root{
+    --color-bg-web:#151515;
+    --color-bg-img:#202020;
+
+}
+
+body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:var(--font-text)
+    background-color: var(--color-bg-web);
 }
 
 .htmx-indicator {
@@ -106,4 +112,75 @@ option{
 /* Mostrar el menú al hacer hover sobre la tarjeta */
 .card-container:hover .card-menu {
     display: block;
+}
+
+#games-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+    a{
+        text-decoration: none;
+    }
+}
+
+/* Contenedor general */
+.game-container {
+    width: 350px;
+    padding: 10px;
+    box-sizing: border-box;
+    .card-game-container {
+        background-color: var(--color-bg-img);
+        border-radius: 10px;
+        color: #fff;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: transform 0.2s ease;
+    }
+    .card-game-container:hover {
+        transform: translateY(-5px);
+    }
+    .card-game-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    .card-body {
+        padding: 10px;
+        text-align: center;
+    }
+    .games-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 16px;
+    }
+}
+
+.game-container-index{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    .game-container-selectors{
+        display: flex;
+        gap: 15px;
+        margin: 0 0 10px 0;
+    }
+    .game-container-search{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        gap: 25px;
+        .input{
+            max-width: 70%;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 15px;
+            color: #555;
+
+        }
+    }
 }
