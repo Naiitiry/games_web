@@ -1,7 +1,6 @@
 :root{
     --color-bg-web:#151515;
     --color-bg-img:#202020;
-
 }
 
 body{
@@ -11,29 +10,6 @@ body{
     background-color: var(--color-bg-web);
 }
 
-.htmx-indicator {
-    display: none;
-    text-align: center;
-    margin-top: 1rem;
-}
-.htmx-request .htmx-indicator {
-    display: block;
-}
-
-/* Spinner simple */
-.spinner {
-    width: 3rem;
-    height: 3rem;
-    border: 5px solid #080505;
-    border-top: 5px solid #007bff;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
 
 nav{
     background-color: #000;
@@ -167,20 +143,61 @@ option{
         display: flex;
         gap: 15px;
         margin: 0 0 10px 0;
+        .button-selector{
+            background-color: var(--color-bg-img);
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 25px;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            transition: all 0.5s;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .button-selector:hover{
+            background-color: #fff;
+            color: #555;
+        }
     }
     .game-container-search{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-
         gap: 25px;
-        .input{
-            max-width: 70%;
-            border-radius: 5px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 15px;
+        .input-search{
+            width: 70%;
+            border: none;
+            border-radius: 25px;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 25px;
+            background-color: #555;
+            padding: 0 0 0 20px;
+            transition: all 0.5s;
+        }
+        .input-search::placeholder{
+                color: #fff;
+                opacity: 1;
+            }
+        .input-search:hover{
+            background-color: #fff;
+        }
+        .input-search:hover::placeholder{
             color: #555;
-
+            opacity: 1;
+        }
+        .button-search{
+            background-color: var(--color-bg-img);
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 25px;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            transition: all 0.5s;
+            font-size: 15px;
+        }
+        .button-search:hover{
+            background-color: #fff;
+            color: #555;
         }
     }
 }

@@ -8,12 +8,19 @@ import math
 API_KEY = settings.RAWG_API
 
 def landing_page_games(request):
-    category = request.GET.get("ordering","-metacritic")
+    category = request.GET.get("ordering","metacritic")
+    direction = request.GET.get("direction","desc")
     platform_query = request.GET.get("platforms","")
     search_query = request.GET.get("search","")
     exclude_additions = request.GET.get("exclude_additions", "")
     page = int(request.GET.get("page",1))
     next_page = page + 1
+
+    # Si la dirección es ascendente, se cambia el signo de la categoría
+    if direction == "desc":
+        category = f'-{category}'
+    else:
+        category = category.lstrip('-')
 
     base_url = "https://api.rawg.io/api/games"
     message_error =""
@@ -25,7 +32,6 @@ def landing_page_games(request):
         "page":page,
         "ordering":f'{category}'
     }
-
 
     if search_query:
         params["search"] = search_query
@@ -44,7 +50,7 @@ def landing_page_games(request):
         total_pages = math.ceil(count/page_size) if page_size else 1
         has_next = page<total_pages
         # Ver por consola que devuelve la variable.
-        # print(games)
+        print([game["name"] for game in games])
     except Exception as e:
         games = []
         message_error=f"Algo salió mal: {str(e)}"
