@@ -10,12 +10,12 @@ class Login(LoginView):
     template_name = 'users/accounts/login.html'
 
 class Logout(LogoutView):
-    nest_page = '/'
+    next_page = '/'
 
 class RegisterUser(FormView):
     template_name = 'users/accounts/register.html'
     form_class = RegisterUserForm
-    success_url = '/thanks/'
+    success_url = '/'
 
     def form_valid(self, form):
         user = form.save()

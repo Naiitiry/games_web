@@ -1,7 +1,7 @@
 <nav>
     <div class="navbar-container">
         <div class="navbar-container-title">
-            <h1><a href="#">API_Games</a></h1>
+            <h1><a href="{% url 'landing_page_games' %}">API_Games</a></h1>
         </div>
         <div class="navbar-container-auth">
             {% if user.is_authenticated %}
@@ -13,7 +13,7 @@
                     </div>
                 </li>
                 <div>
-                    <form action="#" method="POST">
+                    <form action="{% url 'logout' %}" method="POST">
                         {% csrf_token %}
                         <button type="submit">
                             Log Out
@@ -23,7 +23,7 @@
             {% else %}
                 <div>
                     <li>
-                        <a href="#">Log In</a>
+                        <a href="{% url 'login' %}">Log In</a>
                         <a href="#">Sign Up</a>
                         <a href="#">Algo más</a>
                         <div class="card-container">

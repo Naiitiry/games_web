@@ -50,7 +50,7 @@ def landing_page_games(request):
         total_pages = math.ceil(count/page_size) if page_size else 1
         has_next = page<total_pages
         # Ver por consola que devuelve la variable.
-        print([game["name"] for game in games])
+        #print([game["name"] for game in games])
     except Exception as e:
         games = []
         message_error=f"Algo salió mal: {str(e)}"

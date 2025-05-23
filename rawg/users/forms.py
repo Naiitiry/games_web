@@ -17,7 +17,7 @@ class RegisterUserForm(UserCreationForm):
 class GameListForm(ModelForm):
     class Meta:
         model = GameList
-        field = ('name',)
+        fields = ('name',)
         widgets = {
             'name': forms.Select(attrs={'class': 'form-control'}),
         }
