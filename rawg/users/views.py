@@ -9,6 +9,11 @@ from .forms import RegisterUserForm, GameListForm
 class Login(LoginView):
     template_name = 'users/accounts/login.html'
 
+    def form_invalid(self, form):
+        return self.render_to_response(
+            self.get_context_data(form=form, error_message="Error al loguear el usuario.")
+        )
+
 class Logout(LogoutView):
     next_page = '/'
 
@@ -18,6 +23,15 @@ class RegisterUser(FormView):
     success_url = '/'
 
     def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)
-        return super().form_valid(form)
+        try:
+            user = form.save()
+            login(self.request, user)
+            return super().form_valid(form)
+        except Exception as e:
+            return self.render_to_response(
+                self.get_context_data(form=form, error_message=f"Error al registrar el usuario: {str(e)}")
+            )
+    def form_invalid(self, form):
+        return self.render_to_response(
+            self.get_context_data(form=form, error_message="Error al registrar el usuario.")
+        )
