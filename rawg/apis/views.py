@@ -66,7 +66,6 @@ def landing_page_games(request):
         platforms = []
         message_error=f"Algo salió mal: {str(e)}"
 
-
     context = {
         "games": games,
         "message_error": message_error,

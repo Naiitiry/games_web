@@ -1,39 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="container">
+    <div class="detail-container">
         <h1>{{game.name}}</h1>
-        <p class="text-muted">Original name: {{game.name_original}}</p>
-        <div class="row">
+        <p class="text-muted-p">Original name: {{game.name_original}}</p>
+        <div class="detail-container-image">
             <img src="{{game.background_image}}" alt="{{game.name}}">
         </div>
-        <div class="col">
-            <p>{{game.description_raw|safe}}</p>
-            <ul>
+        <div class="detail-container-list">
+            <div class="detail-container-list-items">
                 <h2>Géneros</h2>
-                {% for genre in game.genres %}
-                    <li>
-                        <strong>{{genre.name}}</strong>
-                    </li>
+                <div class="tags-list">
+                    {% for genre in game.genres %}
+                    <span>{{genre.name}}{% if not forloop.last %}, {% endif %}</span>
                     {% empty %}
                         <strong>Aún no se definieron los géneros para el juego.</strong>
-                {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="detail-container-list-items">
                 <h2>Plataforma</h2>
-                {% for platform in game.platforms %}
-                    <li>
-                        <p>{{platform.platform.name}}</p>
-                    </li>
-                {% empty %}
-                    <strong>Aún no se definieron las plataformas para el juego.</strong>
-                {% endfor %}
+                <div class="tags-list">
+                    {% for platform in game.platforms %}
+                    <span>{{platform.platform.name}}{% if not forloop.last %}, {% endif %}</span>
+                    {% empty %}
+                        <strong>Aún no se definieron las plataformas para el juego.</strong>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="detail-container-list-items">
                 <h2>Tags</h2>
-                {% for tag in game.tags %}
-                    <li>
-                        <p>{{tag.name}}</p>
-                    </li>
-                {% empty %}
-                    <strong>Aún no se definieron los tags para el juego.</strong>
-                {% endfor %}
-            </ul>
+                <div class="tags-list">
+                    {% for tag in game.tags %}
+                        <span>{{tag.name}}{% if not forloop.last %}, {% endif %}</span>
+                    {% empty %}
+                        <strong>Aún no se definieron los tags para el juego.</strong>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="detail-container-text">
+            <p>{{game.description_raw|safe}}</p>
         </div>
     </div>
 {% endblock %}
