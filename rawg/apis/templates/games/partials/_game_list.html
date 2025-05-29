@@ -7,10 +7,46 @@
         <a href="{% url 'game_detail' game.id %}">
             <div class="card-game-container">
                 <img src="{{ game.background_image }}" alt="{{game.name}}">
+                <div class="card-game-info">
+                    <table>
+                        <tr>
+                            <td>
+                                {% for platform in game.platforms %}
+                                    <span class="badge bg-secondary">{{platform.platform.name}}</span>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {% if game.metacritic %}
+                                    <span class="badge bg-success">{{game.metacritic}}</span>
+                                {% else %}
+                                    <span class="badge bg-info">N/A</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
                 <div class="card-body">
                     <h3>{{game.name}}</h3>
-                    <p>Released: {{game.released}}</p>
-                    <p>Rating: {{game.rating}}</p>
+                    <table>
+                        <tr>
+                            <td>Released</td>
+                            <td>{{game.released}}</td>
+                        </tr>
+                        <tr>
+                            <td>Rating</td>
+                            <td>{{game.rating}}</td>
+                        </tr>
+                        <tr>
+                            <td>Genres</td>
+                            <td>
+                            {% for genre in game.genres %}
+                                {{genre.name}}{% if not forloop.last %},{% endif %}
+                            {% endfor %}
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </a>

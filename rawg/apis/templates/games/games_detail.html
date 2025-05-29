@@ -2,7 +2,7 @@
 {% block content %}
     <div class="detail-container">
         <h1>{{game.name}}</h1>
-        <p class="text-muted-p">Original name: {{game.name_original}}</p>
+        <p>Original name: {{game.name_original}}</p>
         <div class="detail-container-image">
             <img src="{{game.background_image}}" alt="{{game.name}}">
         </div>
@@ -11,7 +11,7 @@
                 <h2>Géneros</h2>
                 <div class="tags-list">
                     {% for genre in game.genres %}
-                    <span>{{genre.name}}{% if not forloop.last %}, {% endif %}</span>
+                        <span class="badge bg-info">{{genre.name}}{% if not forloop.last %}, {% endif %}</span>
                     {% empty %}
                         <strong>Aún no se definieron los géneros para el juego.</strong>
                     {% endfor %}
@@ -21,7 +21,7 @@
                 <h2>Plataforma</h2>
                 <div class="tags-list">
                     {% for platform in game.platforms %}
-                    <span>{{platform.platform.name}}{% if not forloop.last %}, {% endif %}</span>
+                        <span class="badge bg-secondary">{{platform.platform.name}}{% if not forloop.last %}, {% endif %}</span>
                     {% empty %}
                         <strong>Aún no se definieron las plataformas para el juego.</strong>
                     {% endfor %}

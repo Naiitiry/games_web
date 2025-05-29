@@ -94,4 +94,4 @@ def game_detail(request,game_id):
         error_message = f"Error a obtener los datos del juego, {str(e)}"
 
     return render(request,'games/games_detail.html',{"game":game_data,
-                                                     "error_message":error_message,})
+                                                    "error_message":error_message,})
